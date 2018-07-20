@@ -1,4 +1,4 @@
-package com.testproject;
+package com.TwitterAccountManager;
 
 import android.app.Application;
 
