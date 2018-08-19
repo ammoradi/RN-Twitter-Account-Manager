@@ -36,4 +36,4 @@ buck-out/
 *.jsbundle
 
 # SRC
-src/utils/OauthCredentials.js
+*/OauthCredentials.js
