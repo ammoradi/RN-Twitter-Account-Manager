@@ -10,34 +10,34 @@ class Home extends React.Component {
 
     constructor(props) {
         super(props)
-        console.log(this.props)
     }
 
     render() {
-        if (this.props.profile) {
-            return(
-                <ScrollView>
-                    <View style={styles.imageContainer}>
-                        <Image style={styles.backgroundImage} resizeMode='cover'
-                               source={{uri: this.props.profile.profile_banner_url}}/>
-                        <Image style={{...GlobalStyles.box.center.absolute, width: 50, height: 50}}
-                               source={{uri: this.props.profile.profile_image_url_https}}/>
-                    </View>
-                    <Text style={Object.assign({}, GlobalStyles.text.center, styles.name)}>
-                        {this.props.profile.name}
-                    </Text>
-                    <Text style={Object.assign({}, GlobalStyles.text.center, styles.userName)}>
-                        @{this.props.profile.screen_name}
-                    </Text>
-                    <Logger text={this.props.token} />
-                    <Logger text={this.props.profile} />
-                </ScrollView>
-            )
-        } else return <View/>
+        return (
+            <ScrollView>
+                <View style={styles.imageContainer}>
+                    <Image style={styles.backgroundImage} resizeMode='cover'
+                           source={{uri: this.props.profile.profile_banner_url}}/>
+                    <Image style={{...GlobalStyles.box.center.absolute, width: 50, height: 50}}
+                           source={{uri: this.props.profile.profile_image_url_https}}/>
+                </View>
+                <Text style={Object.assign({}, GlobalStyles.text.center, styles.name)}>
+                    {this.props.profile.name}
+                </Text>
+                <Text style={Object.assign({}, GlobalStyles.text.center, styles.userName)}>
+                    @{this.props.profile.screen_name}
+                </Text>
+                <Logger text={this.props.token} />
+                <Logger text={this.props.profile} />
+            </ScrollView>
+        )
     }
 
 }
 
+/**
+ * STYLES
+ */
 const styles = StyleSheet.create({
     imageContainer: {
         flex: 1,
@@ -61,6 +61,9 @@ const styles = StyleSheet.create({
     }
 });
 
+/**
+ * READ FROM REDUX
+ */
 const mapStateToProps = state => {
     return {
         token: state.token,
@@ -68,6 +71,9 @@ const mapStateToProps = state => {
     }
 }
 
+/**
+ * WRITE TO REDUX
+ */
 const mapDispatchToProps = dispatch => {
     return {
         setToken: token => {

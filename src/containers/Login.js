@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { setToken, setProfile } from './../store/actions/actions'
 import { View, StyleSheet } from 'react-native';
 import Button from './../components/Button'
+import Logger from './../components/Logger'
 import { twitter } from 'react-native-simple-auth';
 
 /**
@@ -50,16 +51,21 @@ class Login extends React.Component {
     render() {
         return (
             <View style={styles.view}>
+                {!this.props.token &&
                 <Button
                     type={'login'}
                     onPress={() => {this.onPress()}}
                     text={Words.login[this.lang]}
                 />
+                }
             </View>
         )
     }
 }
 
+/**
+ * STYLES
+ */
 const styles = StyleSheet.create({
     view: {
         flex: 1,
@@ -69,6 +75,9 @@ const styles = StyleSheet.create({
     },
 });
 
+/**
+ * READ FROM REDUX
+ */
 const mapStateToProps = state => {
     return {
         token: state.token,
@@ -76,6 +85,9 @@ const mapStateToProps = state => {
     }
 }
 
+/**
+ * WRITE TO REDUX
+ */
 const mapDispatchToProps = dispatch => {
     return {
         setToken: token => {

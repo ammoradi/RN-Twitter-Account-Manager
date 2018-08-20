@@ -5,11 +5,10 @@ const initialState = {
     user: null
 }
 
-function AppReducer (state, action) {
+export default function UserReducer (state, action) {
     if (typeof state === 'undefined') {
         return initialState
     }
-
     switch (action.type) {
         case SET_PROFILE:
             return {
@@ -25,5 +24,3 @@ function AppReducer (state, action) {
             return state
     }
 }
-
-export default AppReducer
