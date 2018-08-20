@@ -4,7 +4,8 @@ const variables = {
             primaryColor: '#1da1f2',
         },
         global: {
-            white: '#ffffff'
+            white: '#ffffff',
+            black: '#000000'
         }
     }
 }

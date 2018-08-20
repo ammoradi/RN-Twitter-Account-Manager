@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, StyleSheet, Alert, Text } from 'react-native';
+import { connect } from 'react-redux'
+import { setToken, setProfile } from './../store/actions/actions'
+import { View, StyleSheet } from 'react-native';
 import Button from './../components/Button'
 import { twitter } from 'react-native-simple-auth';
-import Variables from './../styles/variables'
 
 /**
  * @TODO: create and fill utils/OauthCredentials.js file by below example
@@ -29,9 +30,17 @@ class Login extends React.Component {
         this.onPress = this.onPress.bind(this)
     }
 
+    componentDidMount () {
+        if (this.props.token) {
+            this.props.navigation.navigate('Home')
+        }
+    }
+
     onPress () {
         twitter(Credentials).then((info) => {
-            this.props.navigation.navigate('Home', { info, title: info.user.screen_name })
+            this.props.setToken(info.credentials)
+            this.props.setProfile(info.user)
+            this.props.navigation.navigate('Home')
             console.log(info)
         }).catch((error) => {
             console.log(error)
@@ -55,9 +64,27 @@ const styles = StyleSheet.create({
     view: {
         flex: 1,
         flexDirection: 'column',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: 'center',
     },
 });
 
-export default Login;
+const mapStateToProps = state => {
+    return {
+        token: state.token,
+        profile: state.profile,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setToken: token => {
+            dispatch(setToken(token))
+        },
+        setProfile: profile => {
+            dispatch(setProfile(profile))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
