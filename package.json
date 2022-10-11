@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "react": "16.3.1",
-    "react-native": "^0.56.0",
+    "react-native": "^0.70.2",
     "react-native-simple-auth": "^2.4.0",
     "react-navigation": "^2.8.0",
     "react-redux": "^5.0.7",
